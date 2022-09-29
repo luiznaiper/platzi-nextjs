@@ -15,6 +15,7 @@ const ProductPage = () => {
         .then((response) => response.json())
         .then((data: TProduct) => {
           setProduct(data)
+          console.log(data)
         })
     }
   }, [query.id])

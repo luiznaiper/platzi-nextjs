@@ -1,18 +1,21 @@
-import { AppProps } from 'next/app'
-import 'semantic-ui-css/semantic.min.css'
-import '../global.css'
+import React from 'react'
+import { Divider } from 'semantic-ui-react'
+import Layout from '@components/Layout/Layout'
+import CartItemList from '@components/CartItemList/CartItemList'
+import CartSummary from '@components/CartSummary/CartSummary'
+import { useCart, useCartMutations } from '@store/Cart'
 
-import CartProvider from '@store/Cart'
+const CartPage = () => {
+  const { items, count } = useCart()
+  const { removeFromCart } = useCartMutations()
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
-  // Aditional props
-  // Aditional layout
-  // Manejar errores - componentDidCatch
   return (
-    <CartProvider>
-      <Component {...pageProps} />
-    </CartProvider>
+    <Layout>
+      <CartItemList items={items} removeFromCart={removeFromCart} />
+      <Divider />
+      <CartSummary totalAmount={count} />
+    </Layout>
   )
 }
 
-export default MyApp
+export default CartPage
