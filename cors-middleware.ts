@@ -22,7 +22,7 @@ function promisifyMiddleware(middleware: RequestHandler) {
         if (result instanceof Error) {
           return reject(result)
         }
-        return resolve(result)
+        return resolve(result) 
       })
     })
 }
